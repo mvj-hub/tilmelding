@@ -59,7 +59,7 @@ export default function SemesterForms() {
     transition: "all 0.2s ease",
     backgroundColor:
       activeForm === key || hoveredButton === key ? "#ea8115" : "#bedbd6",
-    color: "#fff",
+    color: "#fff", // altid hvid tekst
     fontWeight: "bold",
     fontFamily: "basier square regular",
     fontSize: windowWidth < 600 ? "14px" : "16px",
@@ -95,7 +95,7 @@ export default function SemesterForms() {
           ...gridStyle,
           position: "sticky",
           top: 0,
-          backgroundColor: "#fff",
+          backgroundColor: "transparent", // gennemsigtig baggrund
           zIndex: 1000,
           padding: "10px 0",
         }}
@@ -122,7 +122,7 @@ export default function SemesterForms() {
             overflowY: "auto",
             border: "1px solid #ccc",
             padding: "10px",
-            backgroundColor: "#fff",
+            backgroundColor: "#fff", // hvid baggrund til formularen
           }}
         >
           <div id={forms[activeForm].id}></div>
