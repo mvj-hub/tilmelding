@@ -62,27 +62,41 @@ export default function SemesterForms() {
     margin: "0 auto",
   };
 
-  return (
-    <div style={{ padding: "20px", fontFamily: "basier square regular", textAlign: "center" }}>
-      <div style={gridStyle}>
-        {Object.keys(forms).map((key) => (
-          <button
-            key={key}
-            style={buttonStyle(key)}
-            onClick={() => setActiveForm(key)}
-            onMouseEnter={() => setHoveredButton(key)}
-            onMouseLeave={() => setHoveredButton(null)}
-          >
-            {forms[key].title}
-          </button>
-        ))}
-      </div>
-
-      {activeForm && (
-        <div style={{ marginTop: "20px" }}>
-          <div id={forms[activeForm].id}></div>
-        </div>
-      )}
+ return (
+  <div
+    style={{
+      padding: "20px",
+      fontFamily: "basier square regular",
+      textAlign: "center",
+    }}
+  >
+    <div
+      style={{
+        ...gridStyle,
+        position: "sticky",
+        top: 0, // gør at knapperne sidder fast i toppen af viewporten
+        backgroundColor: "#fff", // giv en baggrund så de ikke overlapper ulæseligt
+        zIndex: 1000, // sørger for at de er over formen
+        padding: "10px 0",
+      }}
+    >
+      {Object.keys(forms).map((key) => (
+        <button
+          key={key}
+          style={buttonStyle(key)}
+          onClick={() => setActiveForm(key)}
+          onMouseEnter={() => setHoveredButton(key)}
+          onMouseLeave={() => setHoveredButton(null)}
+        >
+          {forms[key].title}
+        </button>
+      ))}
     </div>
-  );
-}
+
+    {activeForm && (
+      <div style={{ marginTop: "20px" }}>
+        <div id={forms[activeForm].id}></div>
+      </div>
+    )}
+  </div>
+);
