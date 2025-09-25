@@ -28,7 +28,7 @@ const forms = {
 };
 
 export default function SemesterForms() {
-  const [activeForm, setActiveForm] = useState("spring2026");
+  const [activeForm, setActiveForm] = useState("spring2026"); // default valgt
   const [hoveredButton, setHoveredButton] = useState(null);
 
   useEffect(() => {
@@ -47,32 +47,27 @@ export default function SemesterForms() {
   }, [activeForm]);
 
   const buttonStyle = (key) => ({
-    padding: "14px 28px",
+    padding: "12px 24px",
     borderRadius: "16px",
     border: "none",
     cursor: "pointer",
     transition: "all 0.2s ease",
     backgroundColor:
       activeForm === key
-        ? "#ea8115"
+        ? "#ea8115" // aktiv farve
         : hoveredButton === key
-        ? "#ea8115"
-        : "#bedbd5",
+        ? "#ea8115" // hover farve
+        : "#50aab3", // ny standardfarve
     color: "#fff",
     fontWeight: "bold",
     margin: "10px",
-    fontFamily: "inherit",
+    fontFamily: "basier square regular",
     fontSize: "16px",
-    minWidth: "140px",
   });
 
   return (
-    <div
-      style={{ padding: "20px", fontFamily: "inherit", textAlign: "center" }}
-    >
-      <div
-        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
-      >
+    <div style={{ padding: "20px", fontFamily: "basier square regular", textAlign: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {Object.keys(forms).map((key) => (
           <button
             key={key}
@@ -87,7 +82,7 @@ export default function SemesterForms() {
       </div>
 
       {activeForm && (
-        <div style={{ marginTop: "30px" }}>
+        <div style={{ marginTop: "20px" }}>
           <div id={forms[activeForm].id}></div>
         </div>
       )}
