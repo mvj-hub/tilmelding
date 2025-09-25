@@ -99,7 +99,7 @@ export default function SemesterForms() {
           ...gridStyle,
           position: "sticky",
           top: 0,
-          backgroundColor: "#fff",
+          backgroundColor: ,
           zIndex: 1000,
           padding: "10px 0",
         }}
