@@ -28,7 +28,7 @@ const forms = {
 };
 
 export default function SemesterForms() {
-  const [activeForm, setActiveForm] = useState("spring2026"); // Forår 2026 valgt som default
+  const [activeForm, setActiveForm] = useState("spring2026");
   const [hoveredButton, setHoveredButton] = useState(null);
 
   useEffect(() => {
@@ -46,27 +46,33 @@ export default function SemesterForms() {
     }
   }, [activeForm]);
 
-  // Inline styles for knapper
   const buttonStyle = (key) => ({
-    padding: "10px 20px",
-    borderRadius: "12px",
+    padding: "14px 28px",
+    borderRadius: "16px",
     border: "none",
     cursor: "pointer",
     transition: "all 0.2s ease",
     backgroundColor:
       activeForm === key
-        ? "#ea8115" // aktiv farve
+        ? "#ea8115"
         : hoveredButton === key
-        ? "#ea8115" // hover farve
-        : "#bedbd5", // standard farve
+        ? "#ea8115"
+        : "#bedbd5",
     color: "#fff",
     fontWeight: "bold",
-    margin: "5px",
+    margin: "10px",
+    fontFamily: "inherit",
+    fontSize: "16px",
+    minWidth: "140px",
   });
 
   return (
-    <div style={{ padding: "20px" }}>
-      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+    <div
+      style={{ padding: "20px", fontFamily: "inherit", textAlign: "center" }}
+    >
+      <div
+        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
+      >
         {Object.keys(forms).map((key) => (
           <button
             key={key}
@@ -81,8 +87,7 @@ export default function SemesterForms() {
       </div>
 
       {activeForm && (
-        <div style={{ marginTop: "20px" }}>
-          <h3>{forms[activeForm].title}</h3>
+        <div style={{ marginTop: "30px" }}>
           <div id={forms[activeForm].id}></div>
         </div>
       )}
