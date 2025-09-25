@@ -1,38 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 
 const forms = {
-  spring2026: {
-    id: "youngcrm_admission_859",
-    script:
-      "https://brandbjerg.youngcrm.com/admissions/embed/859/signup/script",
-    title: "Forår 2026",
-  },
-  fall2026: {
-    id: "youngcrm_admission_861",
-    script:
-      "https://brandbjerg.youngcrm.com/admissions/embed/861/signup/script",
-    title: "Efterår 2026",
-  },
-  spring2027: {
-    id: "youngcrm_admission_862",
-    script:
-      "https://brandbjerg.youngcrm.com/admissions/embed/862/signup/script",
-    title: "Forår 2027",
-  },
-  fall2027: {
-    id: "youngcrm_admission_863",
-    script:
-      "https://brandbjerg.youngcrm.com/admissions/embed/863/signup/script",
-    title: "Efterår 2027",
-  },
+  spring2026: { id: "youngcrm_admission_859", script: "https://brandbjerg.youngcrm.com/admissions/embed/859/signup/script", title: "Forår 2026" },
+  fall2026: { id: "youngcrm_admission_861", script: "https://brandbjerg.youngcrm.com/admissions/embed/861/signup/script", title: "Efterår 2026" },
+  spring2027: { id: "youngcrm_admission_862", script: "https://brandbjerg.youngcrm.com/admissions/embed/862/signup/script", title: "Forår 2027" },
+  fall2027: { id: "youngcrm_admission_863", script: "https://brandbjerg.youngcrm.com/admissions/embed/863/signup/script", title: "Efterår 2027" },
 };
 
 export default function SemesterForms() {
-  const [activeForm, setActiveForm] = useState("spring2026"); // default valgt
+  const [activeForm, setActiveForm] = useState("spring2026");
   const [hoveredButton, setHoveredButton] = useState(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  // Lyt til resize for at opdatere windowWidth
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -41,7 +20,6 @@ export default function SemesterForms() {
 
   useEffect(() => {
     if (!activeForm) return;
-
     const form = forms[activeForm];
     const container = document.getElementById(form.id);
     if (container) {
@@ -54,8 +32,8 @@ export default function SemesterForms() {
   }, [activeForm]);
 
   const buttonStyle = (key) => ({
-    padding: "12px 24px",
-    borderRadius: "6px", // mindre afrundet
+    padding: "12px",
+    borderRadius: "6px",
     border: "none",
     cursor: "pointer",
     transition: "all 0.2s ease",
@@ -67,25 +45,26 @@ export default function SemesterForms() {
         : "#50aab3",
     color: "#fff",
     fontWeight: "bold",
-    margin: "10px",
-    fontFamily: "inherit",
-    fontSize: "16px",
-    width: windowWidth < 600 ? "45%" : "auto",
-    minWidth: "120px",
+    fontFamily: "basier square regular",
+    fontSize: windowWidth < 600 ? "14px" : "16px",
+    width: "100%",
+    height: "100%",
+    boxSizing: "border-box",
   });
 
+  const gridStyle = {
+    display: "grid",
+    gap: "10px",
+    justifyContent: "center",
+    width: "100%",
+    gridTemplateColumns: windowWidth < 600 ? "repeat(2, 1fr)" : "repeat(auto-fit, minmax(120px, auto))",
+    maxWidth: windowWidth < 600 ? "400px" : "none",
+    margin: "0 auto",
+  };
+
   return (
-    <div
-      style={{ padding: "20px", fontFamily: "inherit", textAlign: "center" }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          gap: "10px",
-        }}
-      >
+    <div style={{ padding: "20px", fontFamily: "basier square regular", textAlign: "center" }}>
+      <div style={gridStyle}>
         {Object.keys(forms).map((key) => (
           <button
             key={key}
