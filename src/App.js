@@ -30,6 +30,14 @@ const forms = {
 export default function SemesterForms() {
   const [activeForm, setActiveForm] = useState("spring2026"); // default valgt
   const [hoveredButton, setHoveredButton] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Lyt til resize for at opdatere windowWidth
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!activeForm) return;
@@ -38,7 +46,6 @@ export default function SemesterForms() {
     const container = document.getElementById(form.id);
     if (container) {
       container.innerHTML = "";
-
       const script = document.createElement("script");
       script.src = form.script;
       script.async = true;
@@ -48,26 +55,37 @@ export default function SemesterForms() {
 
   const buttonStyle = (key) => ({
     padding: "12px 24px",
-    borderRadius: "16px",
+    borderRadius: "6px", // mindre afrundet
     border: "none",
     cursor: "pointer",
     transition: "all 0.2s ease",
     backgroundColor:
       activeForm === key
-        ? "#ea8115" // aktiv farve
+        ? "#ea8115"
         : hoveredButton === key
-        ? "#ea8115" // hover farve
-        : "#50aab3", // ny standardfarve
+        ? "#ea8115"
+        : "#50aab3",
     color: "#fff",
     fontWeight: "bold",
     margin: "10px",
-    fontFamily: "basier square regular",
+    fontFamily: "inherit",
     fontSize: "16px",
+    width: windowWidth < 600 ? "45%" : "auto",
+    minWidth: "120px",
   });
 
   return (
-    <div style={{ padding: "20px", fontFamily: "basier square regular", textAlign: "center" }}>
-      <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+    <div
+      style={{ padding: "20px", fontFamily: "inherit", textAlign: "center" }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "10px",
+        }}
+      >
         {Object.keys(forms).map((key) => (
           <button
             key={key}
