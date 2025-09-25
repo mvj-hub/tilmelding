@@ -54,16 +54,11 @@ export default function SemesterForms() {
   const buttonStyle = (key) => ({
     padding: "12px",
     borderRadius: "6px",
-    border: "none",
+    border: "1px solid #50aab3",
     cursor: "pointer",
     transition: "all 0.2s ease",
-    backgroundColor:
-      activeForm === key
-        ? "#ea8115"
-        : hoveredButton === key
-        ? "#ea8115"
-        : "#50aab3",
-    color: "#fff",
+    backgroundColor: "transparent", // ingen baggrund
+    color: activeForm === key || hoveredButton === key ? "#ea8115" : "#50aab3",
     fontWeight: "bold",
     fontFamily: "basier square regular",
     fontSize: windowWidth < 600 ? "14px" : "16px",
@@ -99,7 +94,7 @@ export default function SemesterForms() {
           ...gridStyle,
           position: "sticky",
           top: 0,
-          backgroundColor: ,
+          backgroundColor: "transparent", //  bag knapperne
           zIndex: 1000,
           padding: "10px 0",
         }}
@@ -126,6 +121,7 @@ export default function SemesterForms() {
             overflowY: "auto",
             border: "1px solid #ccc",
             padding: "10px",
+            backgroundColor: "#fff", // hvid baggrund
           }}
         >
           <div id={forms[activeForm].id}></div>
